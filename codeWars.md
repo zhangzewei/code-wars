@@ -15,6 +15,7 @@ Note: Given n will be a positive integer.
 这个问题当时拿到的时候是完全没有思路的，后面上网查询了一下这个题目，知道了使用
 斐波那契数列就能够解这道题目，`F(0)=1，F(1)=1, F(n)=F(n-1)+F(n-2)（n>=2
 ，n∈N*）`当然百度作业帮上面也有相应的解法，套路就是
+
 ```js
 题目为一次可以走一步或两步:
 a[1]=1;a[2]=2;
@@ -29,6 +30,7 @@ a[i]=a[i-1]+a[i-2]+a[i-3];
 但是当初看到这个数列的公式，第一想法是使用递归，然后，由于堆栈溢出，失败了
 再看看后面的百度作业帮的那个公式，再联想一下数列，于是想到了使用数列这样的
 结构来解决
+
 ```js
 /**
  * @param {number} n
@@ -60,6 +62,7 @@ There will always be only one integer that appears an odd number
 
 ### 解法
 这是我的解法，写的真的很丑，勿喷哦
+
 ```js
 function findOdd(A) {
   //happy coding!
@@ -79,6 +82,7 @@ function findOdd(A) {
 }
 ```
 然后是大神的解法，使用的是位运算（说实话，还不是很懂位运算，如果有什么见解，欢迎留言）
+
 ```js
 function findOdd(A) {
   //happy coding!
@@ -100,6 +104,7 @@ isSquare(26) => false
 
 ### 解法
 这道就简单了
+
 ```js
 var isSquare = function(n){
   return Number.isInteger(Math.sqrt(n));
@@ -130,6 +135,7 @@ Edge Cases:
 
 ### 解法
 这道题主要是有一个代码字数限制，只能在30个字符以内，使用了ES6的箭头函数
+
 ```js
 var convert = a => a.map(n => n*1)
 ```
@@ -162,6 +168,7 @@ be zero or be larger than the length of the list.
 
 ### 解法
 这道题也相对简单
+
 ```js
 function inverseSlice(items, a, b) {
   return items.filter((item, index) => !((index >= a) && (index < b)));
@@ -191,6 +198,7 @@ var array2 = array.except(1);
 
 ### 解法
 我的解法
+
 ```js
 Array.prototype.except = function(keys)
 {
@@ -204,6 +212,7 @@ Array.prototype.except = function(keys)
 }
 ```
 大神的解法
+
 ```js
 Array.prototype.except = function(keys)
 {
@@ -238,6 +247,7 @@ and to avoid brute-forcing your way through the solution.
 
 这道题有点意思，细心的人就会发现给出的例子里面可以看出一些等差数列的影子，那么我们
 就可以按照等差数列的方法来解这道题了，等差数列求和公式：（首项 + 末项）* 项数 / 2
+
 ```js
 function sequenceSum(begin, end, step){
   //your code here 
@@ -282,6 +292,7 @@ this object must not be modified.
 
 ### 解法
 我的解法
+
 ```js
 Array.prototype.size = function () {
   var i = 0;
@@ -290,6 +301,7 @@ Array.prototype.size = function () {
 };
 ```
 大神的解法
+
 ```js
 Array.prototype.size = function() {
   return this.reduce(r => r + 1, 0);
@@ -311,11 +323,11 @@ Given [34, -345, -1, 100] your solution will return -345
 
 You can assume, for the purpose of this kata, that the supplied
 array will not be empty.
-
 ```
 
 ### 解法
 我的解法
+
 ```js
 function findSmallestInt(args) {
   return args.sort((a, b) => {
@@ -324,6 +336,7 @@ function findSmallestInt(args) {
 }
 ```
 大神的解法
+
 ```js
 function findSmallestInt(args) {
   return Math.min(...args);
@@ -342,11 +355,11 @@ return it. a being 1, b being 2, etc. As an example:
 alphabet_position("The sunset sets at twelve o' clock.")
 Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 
 5 12 22 5 15 3 12 15 3 11" (As a string.)
-
 ```
 
 ### 解法
 我的解法
+
 ```js
 function alphabetPosition(text) {
   let alphabet = {};
@@ -364,6 +377,7 @@ function alphabetPosition(text) {
 }
 ```
 大神的解法
+
 ```js
 function alphabetPosition(text) {
   var result = "";
@@ -377,7 +391,7 @@ function alphabetPosition(text) {
 ```
 ---
 
-## 题目：Array.prototype.size()
+## 题目：GetSum
 ### 描述
 ```js
 Given two integers, which can be positive and negative, find the
@@ -397,10 +411,265 @@ GetSum(-1, 2) == 2  // -1 + 0 + 1 + 2 = 2
 
 ### 解法
 依然是等差数列
+
 ```js
 function GetSum( a,b ) {
   //Good luck!
   return (a + b) * (Math.abs(b - a) + 1) / 2;
 }
+```
+---
+
+## 题目：Add Two Numbers
+### 描述
+```js
+You are given two linked lists representing two non-negative 
+numbers. The digits are stored in reverse order
+and each of their nodes contain a single digit. Add the two 
+numbers and return it as a linked list.
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4) Output: 7 -> 0 -> 8
+```
+
+### 解法
+[javascript linked list structure](http://www.i-programmer.info/programming/javascript/5328-javascript-data-structures-the-linked-list.html)
+
+linked list 是一种链表结构，用于存储数字类似于：
+
+```js
+// 807这个数字的存储结构
+var num8 = {
+  val: 8,
+  next: null,
+}
+
+var num0 = {
+  val: 0,
+  next: num8,
+}
+
+var num7 = {
+  val: 7,
+  next: num0,
+}
+// 807这个数字就能够用这样的结构得到
+```
+
+就只是用一個新的linked list來儲存相加後的結果
+要注意的就是list1跟list2長度可能不一樣
+另外就是相加後可能比9還大，需要考慮進位的情況
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function(l1, l2) {
+    var list = new ListNode(0); //儲存輸出的結果，因為list的指針要不斷往後移，因此用一個假節點方便操作
+    var result = list; // 使用一個ListNode來儲存相加的結果
+
+    var sum,carry = 0; // carry用來處理進位
+
+    //當 list1, list2 都沒有值，而且carry也為0的時候才結束迴圈
+    while(l1 || l2 || carry > 0){
+        sum = 0;
+
+        // list1與list2長度可能不同，分開處理
+        if(l1!== null){
+            sum += l1.val;
+            l1 = l1.next;
+        }
+
+        if(l2!==null){
+            sum += l2.val;
+            l2 = l2.next;
+        }
+
+        // 如果之前有進位，carry = 1；沒有的話carry = 0
+        sum += carry;
+        list.next = new ListNode(sum%10); //相加如果超過9，只能留下個位數放入結果list，十位數的地方進位
+        carry = parseInt(sum/10);
+
+        // list指標向後
+        list = list.next;
+    }
+    // 因為第一個節點為假節點，跳過
+    return result.next;
+}
+```
+
+```js
+// The complete code for the List constructor is:
+function List() {
+ List.makeNode = function() { 
+  return {data: null, next: null}; 
+ }; 
+ 
+ this.start = null; 
+ this.end = null; 
+ 
+ this.add = function(data) { 
+  if (this.start === null) { 
+   this.start = List.makeNode(); 
+   this.end = this.start; 
+  } else { t
+   this.end.next = List.makeNode(); 
+   this.end = this.end.next; 
+  } ; 
+  this.end.data = data; 
+ }; 
+
+ this.delete = function(data) { 
+  var current = this.start; 
+  var previous = this.start; 
+  while (current !== null) { 
+   if (data === current.data) { 
+    if (current === this.start) { 
+     this.start = current.next; 
+     return; 
+    } 
+    if (current === this.end) 
+                      this.end = previous;
+    previous.next = current.next; return; 
+    }
+    previous = current; 
+    current = current.next; 
+   }
+ }; 
+
+ this.insertAsFirst = function(d) { 
+  var temp = List.makeNode(); 
+  temp.next = this.start; 
+  this.start = temp; 
+  temp.data = d; 
+ }; 
+
+ this.insertAfter = function(t, d) { 
+  var current = this.start; 
+  while (current !== null) { 
+   if (current.data === t) { 
+    var temp = List.makeNode();
+    temp.data = d; 
+    temp.next = current.next; 
+    if (current === this.end) this.end = temp;
+    current.next = temp; 
+    return; 
+   } 
+   current = current.next; 
+   }
+  };
+
+  this.item = function(i) { 
+   var current = this.start; 
+   while (current !== null) { 
+    i--; 
+    if (i === 0) return current; 
+    current = current.next; 
+   } 
+   return null; 
+  }; 
+
+ this.each = function(f) {
+  var current = this.start;
+  while (current !== null) { 
+   f(current); 
+   current = current.next; 
+  } 
+ };
+} 
+```
+---
+
+## 题目：Reverse String
+### 描述
+
+```js
+Write a function that takes a string as input and returns the string reversed.
+Example: Given s = "hello", return "olleh".
+```
+
+### 解法
+我的解法
+
+"hello" -> ['h','e','l','l','o'] -> 'o'+'l'+'l'+'e'+'h'
+
+```js
+var reverseString = function(s) {
+    var result = "";
+    var ary = s.split("");
+
+    for(var i = ary.length-1 ; i >= 0 ; i--){
+        result = result + ary[i];
+    }
+    return result;
+};
+```
+进阶解法
+> 未交換前 ['h','e','l','l','o']
+第1次交換 ['h','e','l','l','o'] o,h互換 ['o','e','l','l','h']
+第2次交換 ['o','e','l','l','h'] e,l互換 ['o','l','l','e','h']
+
+```js
+var reverseString = function(s) {
+    var result = "";
+    var ary = s.split("");
+    for(var i = 0, max = (ary.length-1)/2 ; i < max   ; i++){
+        var temp = ary[i];
+        ary[i] = ary[ary.length - 1 - i];
+        ary[ary.length - 1 - i] = temp;
+    }
+    return ary.join("");
+};
+```
+---
+
+
+## 题目：Valid Anagram
+### 描述
+
+```js
+Given two strings s and t, write a function to determine if t is 
+an anagram of s.
+
+For example,
+s = "anagram", t = "nagaram", return true.
+s = "rat", t = "car", return false.
+
+Note:
+You may assume the string contains only lowercase alphabets.
+
+Follow up:
+What if the inputs contain unicode characters? How would you 
+adapt your solution to such case?
+```
+
+### 解法
+我的解法
+
+> 要比較兩個字串裡面的字元是否相同，首先可以判斷長度是否相等，不相等就可以直接判定
+為false 接下來將重新排序後的字串比較是否相等。
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+    if(s.length !== t.length) return false;
+
+    var s1 = s.split("").sort().join("");
+    var t1 = t.split("").sort().join("");
+
+    return s1 === t1;
+};
 ```
 ---
