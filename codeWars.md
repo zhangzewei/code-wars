@@ -673,3 +673,49 @@ var isAnagram = function(s, t) {
 };
 ```
 ---
+
+## 题目： Excel Sheet Column Number
+### 描述
+
+```js
+Related to question Excel Sheet Column Title
+Given a column title as appear in an Excel sheet, return its corresponding column number.
+For example:
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28 
+```
+
+### 解法
+
+A-Z總共26個字母，因此這就是一個26進位的系統
+
+將字串分別取出字元A-Z，根據ANSI CODE，A的code為65，A = 65 - 64 = 1
+
+以AB為例， AB = (A)26^1 + (B)26^0 = 1*26 + 2*1 = 28
+
+以AZ為例， AZ = (A)26^1 + (Z)26^0 = 1*26 + 26*1 = 52
+
+```js
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var titleToNumber = function(s) {
+    var sum = 0;
+    var exp = 0;
+    for(var i = s.length -1 ; i >= 0 ; i--){
+        // 根據ansi將字成數字，从字串后面，也就是低位數開始取
+        var v = s.charCodeAt(i) - 64;
+        // 毎多一个字代表26的n次方
+        v = v*Math.pow(26,exp++);
+        sum += v;
+    }
+    return sum;    
+};
+```
+---
