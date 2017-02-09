@@ -1,4 +1,4 @@
-## 题目： Climbing Stairs
+## 题目1： Climbing Stairs
 ### 描述
 ```js
 You are climbing a stair case.It takes n steps to reach to the top
@@ -49,7 +49,7 @@ var climbStairs = function(n) {
 ```
 ---
 
-## 题目： Find the odd int
+## 题目2： Find the odd int
 ### 描述
 ```js
 Given an array, find the int that appears an odd number of times.
@@ -89,7 +89,7 @@ function findOdd(A) {
 ```
 ---
 
-## 题目：You're a square!
+## 题目3：You're a square!
 ### 描述
 ```js
 Given an integral number, determine if it's a square number:
@@ -110,7 +110,7 @@ var isSquare = function(n){
 ```
 ---
 
-## 题目：Strings to numbers
+## 题目4：Strings to numbers
 ### 描述
 ```js
 You are given an array of numbers in string form. Your task is to 
@@ -139,7 +139,7 @@ var convert = a => a.map(n => n*1)
 ```
 ---
 
-## 题目：Thinkful - List and Loop Drills: Inverse Slicer
+## 题目5：Thinkful - List and Loop Drills: Inverse Slicer
 ### 描述
 ```js
 You're familiar with list slicing in Python and know, 
@@ -174,7 +174,7 @@ function inverseSlice(items, a, b) {
 ```
 ---
 
-## 题目：Get all array elements except those with specified indexes
+## 题目6：Get all array elements except those with specified indexes
 ### 描述
 ```js
 Extend the array object with a function to return all elements
@@ -220,7 +220,7 @@ Array.prototype.except = function(keys)
 ```
 ---
 
-## 题目：Sum of a Sequence [Hard-Core Version]
+## 题目7：Sum of a Sequence [Hard-Core Version]
 ### 描述
 ```js
 The task is simple to explain: simply sum all the numbers from 
@@ -259,7 +259,7 @@ function sequenceSum(begin, end, step){
 
 ---
 
-## 题目：Array.prototype.size()
+## 题目8：Array.prototype.size()
 ### 描述
 ```js
 Implement Array.prototype.size() - without .length !
@@ -309,7 +309,7 @@ Array.prototype.size = function() {
 
 ---
 
-## 题目：Find the smallest integer in the array
+## 题目9：Find the smallest integer in the array
 ### 描述
 ```js
 Find the smallest integer in the array.
@@ -342,7 +342,7 @@ function findSmallestInt(args) {
 ```
 ---
 
-## 题目：Replace With Alphabet Position
+## 题目10：Replace With Alphabet Position
 ### 描述
 ```js
 Welcome. In this kata you are required to, given a string,
@@ -389,7 +389,7 @@ function alphabetPosition(text) {
 ```
 ---
 
-## 题目：GetSum
+## 题目11：GetSum
 ### 描述
 ```js
 Given two integers, which can be positive and negative, find the
@@ -418,7 +418,7 @@ function GetSum( a,b ) {
 ```
 ---
 
-## 题目：Add Two Numbers
+## 题目12：Add Two Numbers
 ### 描述
 ```js
 You are given two linked lists representing two non-negative 
@@ -586,7 +586,7 @@ function List() {
 ```
 ---
 
-## 题目：Reverse String
+## 题目13：Reverse String
 ### 描述
 
 ```js
@@ -630,7 +630,7 @@ var reverseString = function(s) {
 ---
 
 
-## 题目：Valid Anagram
+## 题目14：Valid Anagram
 ### 描述
 
 ```js
@@ -672,7 +672,7 @@ var isAnagram = function(s, t) {
 ```
 ---
 
-## 题目： Excel Sheet Column Number
+## 题目15： Excel Sheet Column Number
 ### 描述
 
 ```js
