@@ -1,9 +1,10 @@
 ## 题目1： Climbing Stairs
 ### 描述
+
 ```js
 You are climbing a stair case.It takes n steps to reach to the top
 
-Each time you can either climb 1 or 2 steps. In how many distinct 
+Each time you can either climb 1 or 2 steps. In how many distinct
 ways can you climb to the top?
 
 Note: Given n will be a positive integer.
@@ -23,7 +24,7 @@ a[i]=a[i-1]+a[i-2];
 若题目为一次可以走一步或两步或三步：
 a[1]=1;a[2]=2;a[3]=4;
 假设i的范围为4~n（n为楼梯数），关系式为：
-a[i]=a[i-1]+a[i-2]+a[i-3]; 
+a[i]=a[i-1]+a[i-2]+a[i-3];
 ```
 但是当初看到这个数列的公式，第一想法是使用递归，然后，由于堆栈溢出，失败了
 再看看后面的百度作业帮的那个公式，再联想一下数列，于是想到了使用数列这样的
@@ -51,6 +52,7 @@ var climbStairs = function(n) {
 
 ## 题目2： Find the odd int
 ### 描述
+
 ```js
 Given an array, find the int that appears an odd number of times.
 
@@ -65,7 +67,7 @@ There will always be only one integer that appears an odd number
 function findOdd(A) {
   //happy coding!
   let indecies = [];
-  
+
   A.forEach(a => {
     let idx = A.indexOf(a);
     let index = [];
@@ -91,8 +93,9 @@ function findOdd(A) {
 
 ## 题目3：You're a square!
 ### 描述
+
 ```js
-Given an integral number, determine if it's a square number:
+Given an integral number, determine if its a square number:
 isSquare(-1) => false
 isSquare( 3) => false
 isSquare( 4) => true
@@ -112,12 +115,13 @@ var isSquare = function(n){
 
 ## 题目4：Strings to numbers
 ### 描述
+
 ```js
-You are given an array of numbers in string form. Your task is to 
+You are given an array of numbers in string form. Your task is to
 convert this to an array of numbers.
 
-Your function can only be a maximum of 30 characters long 
-(not including whitespaces)! I have limited the char count 
+Your function can only be a maximum of 30 characters long
+(not including whitespaces)! I have limited the char count
 because there is a very short and easy way to achieve this task.
 
 Here is an example of what your function needs to return:
@@ -141,8 +145,9 @@ var convert = a => a.map(n => n*1)
 
 ## 题目5：Thinkful - List and Loop Drills: Inverse Slicer
 ### 描述
+
 ```js
-You're familiar with list slicing in Python and know, 
+You are familiar with list slicing in Python and know,
 for example, that:
 >>> ages = [12, 14, 63, 72, 55, 24]
 >>> ages[2:4]
@@ -152,15 +157,15 @@ for example, that:
 >>> ages[:3]
 [12, 14, 63]
 
-write a function inverse_slice() that takes three arguments: 
+write a function inverse_slice() that takes three arguments:
 a list items, an integer a and an integer b. The function should
  return a new list with the slice specified by items[a:b] excluded
 For example:
 >>>inverse_slice([12, 14, 63, 72, 55, 24], 2, 4)
 [12, 14, 55, 24]
 
-The input will always be a valid list, a and b will always be 
-different integers equal to or greater than zero, but they may 
+The input will always be a valid list, a and b will always be
+different integers equal to or greater than zero, but they may
 be zero or be larger than the length of the list.
 ```
 
@@ -176,6 +181,7 @@ function inverseSlice(items, a, b) {
 
 ## 题目6：Get all array elements except those with specified indexes
 ### 描述
+
 ```js
 Extend the array object with a function to return all elements
  of that array, except the ones with the indexes passed in the
@@ -223,9 +229,9 @@ Array.prototype.except = function(keys)
 ## 题目7：Sum of a Sequence [Hard-Core Version]
 ### 描述
 ```js
-The task is simple to explain: simply sum all the numbers from 
+The task is simple to explain: simply sum all the numbers from
 the first parameter being the beginning to the second parameter
- being the upper limit (possibly included), going in steps 
+ being the upper limit (possibly included), going in steps
  expressed by the third parameter:
 
 sequenceSum(2,2,2) === 2
@@ -233,7 +239,7 @@ sequenceSum(2,6,2) === 12 // 2 + 4 + 6
 sequenceSum(1,5,1) === 15 // 1 + 2 + 3 + 4 + 5
 sequenceSum(1,5,3) === 5 // 1 + 4
 If it is an impossible sequence (with the beginning being larger
- the end and a positive step or the other way around), just 
+ the end and a positive step or the other way around), just
  return 0. See the provided test cases for further examples :)
 
 Note: differing from the other base kata, much larger ranges are
@@ -248,9 +254,9 @@ and to avoid brute-forcing your way through the solution.
 
 ```js
 function sequenceSum(begin, end, step){
-  //your code here 
+  //your code here
   const n = Math.floor((end - begin) / step) + 1;
-  if (n<0) return 0; 
+  if (n<0) return 0;
   const An = begin + ((n-1) * step);
   return n * (begin + An) / 2;
 }
@@ -261,6 +267,7 @@ function sequenceSum(begin, end, step){
 
 ## 题目8：Array.prototype.size()
 ### 描述
+
 ```js
 Implement Array.prototype.size() - without .length !
 
@@ -311,6 +318,7 @@ Array.prototype.size = function() {
 
 ## 题目9：Find the smallest integer in the array
 ### 描述
+
 ```js
 Find the smallest integer in the array.
 
@@ -344,10 +352,11 @@ function findSmallestInt(args) {
 
 ## 题目10：Replace With Alphabet Position
 ### 描述
+
 ```js
 Welcome. In this kata you are required to, given a string,
-replace every letter with its position in the alphabet. If 
-anything in the text isn't a letter, ignore it and don't 
+replace every letter with its position in the alphabet. If
+anything in the text isn't a letter, ignore it and don't
 return it. a being 1, b being 2, etc. As an example:
 
 alphabet_position("The sunset sets at twelve o' clock.")
@@ -391,14 +400,15 @@ function alphabetPosition(text) {
 
 ## 题目11：GetSum
 ### 描述
+
 ```js
 Given two integers, which can be positive and negative, find the
- sum of all the numbers between including them too and return it. 
+ sum of all the numbers between including them too and return it.
  If both numbers are equal return a or b.
 
 Note! a and b are not ordered!
 
-Example: 
+Example:
 GetSum(1, 0) == 1   // 1 + 0 = 1
 GetSum(1, 2) == 3   // 1 + 2 = 3
 GetSum(0, 1) == 1   // 0 + 1 = 1
@@ -421,9 +431,9 @@ function GetSum( a,b ) {
 ## 题目12：Add Two Numbers
 ### 描述
 ```js
-You are given two linked lists representing two non-negative 
+You are given two linked lists representing two non-negative
 numbers. The digits are stored in reverse order
-and each of their nodes contain a single digit. Add the two 
+and each of their nodes contain a single digit. Add the two
 numbers and return it as a linked list.
 
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4) Output: 7 -> 0 -> 8
@@ -507,82 +517,82 @@ var addTwoNumbers = function(l1, l2) {
 ```js
 // The complete code for the List constructor is:
 function List() {
- List.makeNode = function() { 
-  return {data: null, next: null}; 
- }; 
- 
- this.start = null; 
- this.end = null; 
- 
- this.add = function(data) { 
-  if (this.start === null) { 
-   this.start = List.makeNode(); 
-   this.end = this.start; 
+ List.makeNode = function() {
+  return {data: null, next: null};
+ };
+
+ this.start = null;
+ this.end = null;
+
+ this.add = function(data) {
+  if (this.start === null) {
+   this.start = List.makeNode();
+   this.end = this.start;
   } else { t
-   this.end.next = List.makeNode(); 
-   this.end = this.end.next; 
-  } ; 
-  this.end.data = data; 
- }; 
+   this.end.next = List.makeNode();
+   this.end = this.end.next;
+  } ;
+  this.end.data = data;
+ };
 
- this.delete = function(data) { 
-  var current = this.start; 
-  var previous = this.start; 
-  while (current !== null) { 
-   if (data === current.data) { 
-    if (current === this.start) { 
-     this.start = current.next; 
-     return; 
-    } 
-    if (current === this.end) 
-                      this.end = previous;
-    previous.next = current.next; return; 
+ this.delete = function(data) {
+  var current = this.start;
+  var previous = this.start;
+  while (current !== null) {
+   if (data === current.data) {
+    if (current === this.start) {
+     this.start = current.next;
+     return;
     }
-    previous = current; 
-    current = current.next; 
+    if (current === this.end)
+                      this.end = previous;
+    previous.next = current.next; return;
+    }
+    previous = current;
+    current = current.next;
    }
- }; 
+ };
 
- this.insertAsFirst = function(d) { 
-  var temp = List.makeNode(); 
-  temp.next = this.start; 
-  this.start = temp; 
-  temp.data = d; 
- }; 
+ this.insertAsFirst = function(d) {
+  var temp = List.makeNode();
+  temp.next = this.start;
+  this.start = temp;
+  temp.data = d;
+ };
 
- this.insertAfter = function(t, d) { 
-  var current = this.start; 
-  while (current !== null) { 
-   if (current.data === t) { 
+ this.insertAfter = function(t, d) {
+  var current = this.start;
+  while (current !== null) {
+   if (current.data === t) {
     var temp = List.makeNode();
-    temp.data = d; 
-    temp.next = current.next; 
+    temp.data = d;
+    temp.next = current.next;
     if (current === this.end) this.end = temp;
-    current.next = temp; 
-    return; 
-   } 
-   current = current.next; 
+    current.next = temp;
+    return;
+   }
+   current = current.next;
    }
   };
 
-  this.item = function(i) { 
-   var current = this.start; 
-   while (current !== null) { 
-    i--; 
-    if (i === 0) return current; 
-    current = current.next; 
-   } 
-   return null; 
-  }; 
+  this.item = function(i) {
+   var current = this.start;
+   while (current !== null) {
+    i--;
+    if (i === 0) return current;
+    current = current.next;
+   }
+   return null;
+  };
 
  this.each = function(f) {
   var current = this.start;
-  while (current !== null) { 
-   f(current); 
-   current = current.next; 
-  } 
+  while (current !== null) {
+   f(current);
+   current = current.next;
+  }
  };
-} 
+}
 ```
 ---
 
@@ -634,7 +644,7 @@ var reverseString = function(s) {
 ### 描述
 
 ```js
-Given two strings s and t, write a function to determine if t is 
+Given two strings s and t, write a function to determine if t is
 an anagram of s.
 
 For example,
@@ -645,7 +655,7 @@ Note:
 You may assume the string contains only lowercase alphabets.
 
 Follow up:
-What if the inputs contain unicode characters? How would you 
+What if the inputs contain unicode characters? How would you
 adapt your solution to such case?
 ```
 
@@ -685,7 +695,7 @@ C -> 3
 ...
 Z -> 26
 AA -> 27
-AB -> 28 
+AB -> 28
 ```
 
 ### 解法
