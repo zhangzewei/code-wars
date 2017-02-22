@@ -216,10 +216,10 @@ Write a function to find the longest common prefix string amongst an array of st
 
 ### 解法
 
-1.比對前兩個字串，從頭開始取出相同的部分為共同字首
-2.後面的字串只要與目前的共同字首比對即可
-3.['abcd','abccc','abdec'] ，一開始'abcd','abccc'共同字首前3碼'abc'
-4.接下來只要將'abc','abdec'做比對，發現剩下'ab'，也就是最長的共同字首
+1. 比對前兩個字串，從頭開始取出相同的部分為共同字首
+2. 後面的字串只要與目前的共同字首比對即可
+3. ['abcd','abccc','abdec'] ，一開始'abcd','abccc'共同字首前3碼'abc'
+4. 接下來只要將'abc','abdec'做比對，發現剩下'ab'，也就是最長的共同字首
 
 ```js
 /**
@@ -248,6 +248,38 @@ var longestCommonPrefix = function(strs) {
     }
 
     return same;
+};
+```
+---
+
+## 题目21： Add Digits
+### 描述
+
+```js
+Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+
+For example:
+
+Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one digit, return it.
+
+Follow up:
+Could you do it without any loop/recursion in O(1) runtime?
+```
+
+### 解法
+
+这道题的题意很简单，就是将一串数字变成一组数列，然后将其相加之后的和不大于10就行，这个大于10的条件是我看了别人的解法次知道的，
+在这之前我的想法是拿着这个产出的数字再进行一次数列化，然后数列的长度等于一的时候就返回结果；但是大于10这个条件确实比我的想法好
+```js
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits = function(num) {
+    while(num >= 10){
+        num = ('' + num).split('').reduce(function(a, b) { return parseInt(a) + parseInt(b)});
+    }
+    return num;
 };
 ```
 ---
