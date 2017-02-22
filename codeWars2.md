@@ -283,3 +283,43 @@ var addDigits = function(num) {
 };
 ```
 ---
+
+## 题目22：  Power of Two &  Power of Three
+### 描述
+
+```js
+Given an integer, write a function to determine if it is a power of two/three.
+```
+
+### 解法
+
+这是两道题的合集，解法都一样的，只要一直除以这个数字，直到最后看看是否等于这个数字的一次方也就是这个数字本身
+```js
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfTwo = function(n) {
+    if (n <= 0) return false;
+    if (n === 1) return true; // 2的0次方
+    while (n > 2) {
+       n = n/2; 
+    }
+    return n === 2; // 一直除以2，一直等到2的一次方
+};
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfThree = function(n) {
+    if (n <= 0) return false;
+    if (n === 1) return true;
+    while (n > 3) {
+        n = n/3;
+    }
+    return n === 3;
+};
+```
+---
+
