@@ -22,7 +22,7 @@ The vowels does not include the letter "y".
 
 ```js
 /**
- * @param {string} s
+ * @param {string}
  * @return {string}
  */
 var reverseVowels = function(s) {
@@ -323,3 +323,58 @@ var isPowerOfThree = function(n) {
 ```
 ---
 
+## 题目23： Ugly Number
+### 描述
+
+```js
+Write a program to check whether a given number is an ugly number.
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. 
+For example, 6, 8 are ugly while 14 is not ugly since it includes another prime factor 7.
+
+Note that 1 is typically treated as an ugly number.
+```
+
+### 解法
+
+这道题最开始想的是把一个数字的质因数全部得到之后再看是否全是[2,3.5]，但是这样子做会超出时间的限制，所以参考了别人的做法
+只需要将这个数字的质因数去掉[2.3.5]然后看是否还有其他的质因数，根据分解质因数的公式可以知道：假设这个数字为N
+那么N应该是只能由M个2，L个3，Y个5相乘组合起来，而且只要是小于7的数字都是ugly number，所以只要这个数字大于7
+就循环的除去它的质因数 2，3，5，（在最后算出来的数字如果只是2，3，5其中的一个数字，那么久成功）然后在看它是否还有
+其他的质因数，如果没有，那么是ugly number
+
+```js
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var isUgly = function(num) {
+    if(num <= 0){
+        return false;
+    }
+    if(num <= 6) return true;
+
+    while(num > 2){
+        if(num % 2 !== 0){
+            break;   
+        }
+        num = parseInt(num / 2);
+    }
+
+    while(num > 3){
+        if(num % 3 !== 0){
+            break;   
+        }
+        num = parseInt(num / 3);
+    }
+
+    while(num > 5){
+        if(num % 5 !== 0){
+            break;   
+        }
+        num = parseInt(num / 5);
+    }
+    return num % 2 === 0 || num % 3 === 0 || num % 5 === 0;
+}
+```
+---
