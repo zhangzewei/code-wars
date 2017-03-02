@@ -378,3 +378,59 @@ var isUgly = function(num) {
 }
 ```
 ---
+
+
+## 题目24： Plus One
+### 描述
+
+```js
+Given a non-negative integer represented as a non-empty array of digits, plus one to the integer.
+
+You may assume the integer do not contain any leading zero, except the number 0 itself.
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+Subscribe to see which companies asked this question.
+```
+
+### 解法
+
+这道题最开始想的是把一个数字数组变成数字之后加上1然后再变成数字数组，但是事实证明，这个方法不行，因为JS的数字最大长度有限
+而且还会多次操作数组，所以我找到以下方法，只操作一次数组，并且能够完成任务
+
+```js
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function(digits) {
+    // 判斷相加後是否需進位
+    var carry = 0;
+
+    for(var i = digits.length - 1 ; i >= 0 ; i--){
+        // 目前位數 = 目前位數+前面是否進位
+        digits[i]= digits[i] + carry;
+
+        // list最後一個數字，也就是個位數，給他+1
+        if(i === digits.length - 1 ){
+          digits[i] = digits[i] + 1;
+        } 
+
+        // 如果目前這個位數等於10(因為只+1，所以不會超過10)，進位
+        if(digits[i] === 10){
+          digits[i] = 0;
+          carry = 1;
+        } else {
+          carry = 0;
+        }
+    }
+
+    // 最後如果有進位
+    if(carry === 1){
+        digits.unshift(carry); 
+    }
+
+    return digits;
+};
+```
+---
