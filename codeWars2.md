@@ -434,3 +434,39 @@ var plusOne = function(digits) {
 };
 ```
 ---
+
+## 题目25： 动态规划LCS
+### 描述
+
+```js
+也就是算两个字符串的最大子序列长度
+```
+
+### 解法
+
+这个可能需要图解
+
+```js
+var _lcs = function(str1, str2) {
+    var table = [];
+    for (var i = 0; i < str1.length + 1; i++) {
+        table[i] = [];
+        for (var j = 0; j < str2.length + 1; j++) {
+            table[i][j] = 0;
+        }
+    }
+    for (var a = 1; a < str1.length + 1; a++) {
+        for (var b = 1; b < str2.length + 1; b++) {
+            if (str1[a] === str2[b]) {
+                table[a][b] = table[a - 1][b - 1] + 1;
+            } else if (table[a - 1][b] >= table[a][b]) {
+                table[a][b] = table[a - 1][b];
+            } else {
+                table[a][b] = table[a][b - 1];
+            }
+        }
+    }
+    return table[str1.length][str2.length];
+};
+```
+---
