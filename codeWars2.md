@@ -470,3 +470,37 @@ var _lcs = function(str1, str2) {
 };
 ```
 ---
+
+## 题目26：Factorial Trailing Zeroes
+### 描述
+
+給一個正整數n，回傳n!中有幾個0
+注意：你的解法應該是log(n)的時間複雜度。
+範例： n = 5 ; n! = 120 回傳 1。
+
+### 解法
+
+- 當出現0，也就是10的n次方，可以推論一定要出現因子裡面含有2跟5的數字
+- 2這個數字到處撿都是，真正決定會出現幾個0的，是n!裡面包含幾個5
+- 例如上面的n=5，54321 = 120，可以發現5*2 =10，因此會出現一個0
+- n = 25，會出現 25,20,15,10,5共5個帶有5的數字，不過25其實包含了5*5，所以25!總共會出現5+1=6個10。
+
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var trailingZeroes = function(n) {
+    if(n < 5) return 0 ;
+
+    var count = 0;
+    // 算階層內有幾個5出現
+    while(n >= 5){
+        count += Math.floor(n/5);
+        n = parseInt(n/5);
+    }
+
+    return count;
+};
+```
+---
