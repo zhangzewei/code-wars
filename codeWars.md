@@ -726,4 +726,52 @@ var titleToNumber = function(s) {
     return sum;    
 };
 ```
+
+## 另一道题 Excel Sheet Column Title
+
+### 描述
+
+```js
+Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+For example:
+1 -> A
+2 -> B
+3 -> C
+...
+26 -> Z
+27 -> AA
+28 -> AB 
+```
+
+### 解法
+
+ABC = 1x26^2 + 2x26^1 + 3 ，看起來可以用 String.fromCharCode(n%26 + 64)直接將數字轉成英文字母
+ZZZ =26x26^2 + 26x26^1 + 26，可是當n=26，也就是字母Z的時候，26%26 = 0，反而不能得到正確的字母Z
+因此改用String.fromCharCode((n-1)%26 + 65)處理
+
+```js
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var convertToTitle = function(n) {
+    // String.fromCharCode(65) = 'A'， String.fromCharCode(66) = 'B' ..... String.fromCharCode(90) = 'Z'
+
+    // 比27小的時候，可以直接用String.fromCharCode(n)轉換成英文字母
+    if(n-1 < 26){
+        return String.fromCharCode(65+(n-1)%26);
+    }
+
+    var result = "";
+
+    while(n > 0){
+        var codeNum = (n-1)%26;
+        var c = String.fromCharCode(codeNum+65);
+        result = c + result;
+
+        n = parseInt((n-1) / 26);
+    }
+    return  result;
+};
+```
 ---
