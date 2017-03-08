@@ -1,7 +1,7 @@
 ## 题目16： Reverse Vowels of a String
 ### 描述
 
-```js
+```
 Write a function that takes a string as input and reverse only the vowels of a string.
 
 Example 1:
@@ -53,7 +53,7 @@ var reverseVowels = function(s) {
 ## 题目17： Isomorphic Strings
 ### 描述
 
-```js
+```
 Given two strings s and t, determine if they are isomorphic.
 
 Two strings are isomorphic if the characters in s can be replaced to get t.
@@ -125,7 +125,7 @@ var isIsomorphic = function(s, t) {
 ## 题目18： Valid Parentheses
 ### 描述
 
-```js
+```
 iven a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.+
 
 The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
@@ -178,7 +178,7 @@ var isValid = function(s) {
 ## 题目19： Length of Last Word
 ### 描述
 
-```js
+```
 Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
 
 If the last word does not exist, return 0.
@@ -210,7 +210,7 @@ var lengthOfLastWord = function(s) {
 ## 题目20： Longest Common Prefix
 ### 描述
 
-```js
+```
 Write a function to find the longest common prefix string amongst an array of strings.
 ```
 
@@ -255,7 +255,7 @@ var longestCommonPrefix = function(strs) {
 ## 题目21： Add Digits
 ### 描述
 
-```js
+```
 Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
 
 For example:
@@ -287,7 +287,7 @@ var addDigits = function(num) {
 ## 题目22：  Power of Two &  Power of Three
 ### 描述
 
-```js
+```
 Given an integer, write a function to determine if it is a power of two/three.
 ```
 
@@ -326,7 +326,7 @@ var isPowerOfThree = function(n) {
 ## 题目23： Ugly Number
 ### 描述
 
-```js
+```
 Write a program to check whether a given number is an ugly number.
 
 Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. 
@@ -383,7 +383,7 @@ var isUgly = function(num) {
 ## 题目24： Plus One
 ### 描述
 
-```js
+```
 Given a non-negative integer represented as a non-empty array of digits, plus one to the integer.
 
 You may assume the integer do not contain any leading zero, except the number 0 itself.
@@ -438,13 +438,15 @@ var plusOne = function(digits) {
 ## 题目25： 动态规划LCS
 ### 描述
 
-```js
+```
 也就是算两个字符串的最大子序列长度
 ```
 
 ### 解法
 
 这个可能需要图解
+
+![动态规划lcs](./imgs/lcs.png)
 
 ```js
 var _lcs = function(str1, str2) {
@@ -474,9 +476,11 @@ var _lcs = function(str1, str2) {
 ## 题目26：Factorial Trailing Zeroes
 ### 描述
 
+```
 給一個正整數n，回傳n!中有幾個0
 注意：你的解法應該是log(n)的時間複雜度。
 範例： n = 5 ; n! = 120 回傳 1。
+```
 
 ### 解法
 
@@ -498,6 +502,199 @@ var trailingZeroes = function(n) {
     while(n >= 5){
         count += Math.floor(n/5);
         n = parseInt(n/5);
+    }
+
+    return count;
+};
+
+```
+---
+
+## 题目27：Palindrome Number
+### 描述
+
+```
+判斷一個int整數是否是自己的迴文數，不能使用額外的空間來操作。
+提示：
+負整數會是自己的迴文數嗎(ex. -1)
+如果你想用字串來解是不行的，因為不能使用額外的空間。
+你也可以反轉整數，如果你之前已經做過LeetCode 7. Reverse Integer，你會知道反轉後的數可能會超過integer的最大值。
+```
+
+### 解法
+
+```
+不使用額外空間的意思，根據discuss裡面的討論，應該是不能用一個O(n)的額外空間(ex. array, string之類的)，用一個O(1)的變數是可以的。 把傳入的x整個反轉後跟本來的x比較是否一致，這題還算簡單
+```
+
+```js
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+    // x < 0 or x > (2^32 - 1) , false;
+    if(x < 0 || x > Math.pow(2, 32) - 1) return false;
+    if(x < 10) return true;
+
+    // keep x
+    var num = x;
+
+    // 先将最高位数字拿出来
+    var recNum = x % 10;
+    x  = parseInt(x / 10);
+
+    // 把recNum*10，再把最高位的数字加到recNumb
+    while(x !== 0){
+        recNum = recNum * 10;
+        recNum = recNum + x % 10;
+        x = parseInt(x / 10);
+    }
+    return recNum === num;
+};
+```
+---
+
+## 题目28：Reverse Integer
+### 描述
+
+```
+Reverse digits of an integer.
+Example1: x = 123, return 321
+Example2: x = -123, return -321
+
+Note:
+The input is assumed to be a 32-bit signed integer. Your function should return 0 when the reversed integer overflows.
+```
+
+### 解法
+
+```
+也就是一个将数字翻转，可以利用上面那道题的函数来做这个道题
+```
+
+```js
+var isPalindrome = function(x) {
+    var maxInt = Math.pow(2, 31) - 1;
+    if(x < 10) return x;
+
+    var recNum = x % 10;
+    x  = parseInt(x / 10);
+
+    while(x !== 0){
+        recNum = recNum * 10;
+        recNum = recNum + x % 10;
+        x = parseInt(x / 10);
+    }
+    if (recNum > maxInt) return 0;
+    return recNum;
+};
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function(x) {
+    var isNegative = false;
+    if (x < 0) {
+        isNegative = true;
+    }
+    var num = isPalindrome(Math.abs(x));
+    if (isNegative) return -num;
+    return num;
+};
+```
+---
+
+## 题目29：Rectangle Area
+### 描述
+
+```
+計算兩個長方形所覆蓋的面積，每個長方形都是由左下頂點與右上頂點決定，如圖所示。
+假設覆蓋面積不會過int的最大值。
+```
+![rectArea](./imgs/rectArea.png)
+
+### 解法
+
+```
+这道题的各个坐标就是按照图上的标识来做的，在之前我也在想给的参数这么多个是否可以任意组合，但是看样子应该不能
+先考慮兩個長方形不交疊的情況，只要單純的計算面積相加即可
+AB,EF分別為左下頂點，CD,GH分別為右上頂點，如果A>=G表示第一個長方形在第二個長方形右側而且面積不重疊
+同樣方法可判斷兩個長方形其他三個點是否有交疊的情況
+如果有交疊的情況發生，使用max(A,E)可以找出交疊正方形的左下頂點，同樣方法可以找出交疊正方形正確位置並計算面積
+```
+
+```js
+/**
+ * @param {number} A
+ * @param {number} B
+ * @param {number} C
+ * @param {number} D
+ * @param {number} E
+ * @param {number} F
+ * @param {number} G
+ * @param {number} H
+ * @return {number}
+ */
+var computeArea = function(A, B, C, D, E, F, G, H) {
+    // 分別計算ABCD與EGFH的面積
+    var r1 =  Math.abs(A - C) * Math.abs(B - D);
+    var r2 =  Math.abs(E - G) * Math.abs(F - H);
+
+    // 如果ABCD與EGFH沒重疊，直接將r1,r2加總
+    if( A >= G || B >= H || C <= E || D <= F){
+        return r1 + r2;
+    }
+
+    // 計算重疊的部分
+    var rD = Math.abs( (Math.max(A,E) - Math.min(C,G)) * (Math.max(B,F) - Math.min(D,H)) );
+
+    return r1 + r2 - rD;
+};
+```
+---
+
+## 题目30：Count Primes
+### 描述
+
+```
+Description:
+
+Count the number of prime numbers less than a non-negative number, n.
+```
+
+### 解法
+
+```
+计算质数这个在网上有很多的解决方法，我这里用的是以下判断方法来进行判断的
+1. 是否大于3，因为大于3以后出现第一个质数2；
+2. 是否能被2整除，如果不能则就能跳过所有2的倍数，能的话，那就不是质数了；
+3. 循环的上限不需要循环到n，因为若有两个数相乘为n，则必有一个因子小于sqrt(n);
+```
+
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var countPrimes = function(n) {
+     if(n < 3) return 0;
+
+    var count = 1;
+    // 加快速度，所以跳過2的倍數
+    for(var i = 3 ; i < n ; i+=2){
+        var flag = true;
+        // 判斷i是不是質數
+        for(var j = 3 ; j <= Math.sqrt(i); j+=2){
+            if(i%j === 0){
+                // i能被比自己小的數除盡，表示i不是質數
+                flag = false; 
+                break;
+            }
+        }
+
+        if(flag) count++;
     }
 
     return count;
