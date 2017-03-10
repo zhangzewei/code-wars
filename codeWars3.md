@@ -90,3 +90,78 @@ var intersection = function(nums1, nums2) {
 };
 ```
 ---
+
+
+## 题目33：Majority Element
+### 描述
+
+```
+Given an array of size n, find the majority element. The majority element is the element that appears more than
+⌊ n/2 ⌋ times.
+
+You may assume that the array is non-empty and the majority element always exist in the array.
+```
+
+### 解法
+```
+找到一个数字出现在这个数组中的次数为N/2，这个很简单，只需要建立一个Map来表示一个数字与出现次数的关系就好，把数组便利之后，
+将当前数字放入map，如果是第一次放入，则这个数字对应的次数为1，如果出现过，则将对应的数字加1
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+    var map = {};
+    var numsLength = nums.length;
+    if (numsLength === 1) return nums[0];
+    for (var i = 0; i < numsLength; i++) {
+        if (!map[nums[i]]) {
+            map[nums[i]] = 1;
+        } else {
+            map[nums[i]]++;
+            if (map[nums[i]] >= numsLength / 2) {
+                return nums[i];
+            }
+        }
+    }
+};
+```
+
+## 拓展
+### 描述
+
+```
+Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+```
+
+### 解法
+```
+这个完全就可以沿用上面所讲的，只需要出现次数为2，就返回true，否则返回false
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+    var map = {};
+    var numsLength = nums.length;
+    if (numsLength <= 1) return false;
+    for (var i = 0; i < numsLength; i++) {
+        if (!map[nums[i]]) {
+            map[nums[i]] = 1;
+        } else {
+            map[nums[i]]++;
+            if (map[nums[i]] === 2) {
+                return true;
+            }
+        }
+    }
+    return false;
+};
+```
+---
