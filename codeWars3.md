@@ -38,6 +38,47 @@ var moveZeroes = function(nums) {
     }
 };
 ```
+
+## 拓展
+### 描述
+
+```
+Given an array and a value, remove all instances of that value in place and return the new length.
+
+Do not allocate extra space for another array, you must do this in place with constant memory.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+Example:
+Given input array nums = [3,2,2,3], val = 3
+
+Your function should return length = 2, with the first two elements of nums being 2.
+```
+
+### 解法
+```
+这个函数应该是上面那个函数的高级版本，传任意参数进去都行
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+function  removeElement(nums, val) {
+    if (nums.length === 0) return nums.length;
+    if (!nums.includes(val)) return nums.length;
+    var count = 0;
+    for (var i = 0; i < nums.length; i++) {
+        if(nums[i] !== val) {
+            nums[count] = nums[i];
+            count++;
+        }
+    }
+    return count;
+}
+```
 ---
 
 ## 题目32：Intersection of Two Arrays
@@ -162,6 +203,86 @@ var containsDuplicate = function(nums) {
         }
     }
     return false;
+};
+```
+---
+
+## 题目34：Pascal's Triangle
+### 描述
+
+```
+Given numRows, generate the first numRows of Pascal's triangle.
+
+For example, given numRows = 5,
+目标很明确，就是形成这样一个三角形的数列
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+```
+
+### 解法
+```
+1. 首先当前列的数列下标n位置的值为上一列n位置的值加上上一列n+1位置的值
+2. 每一列初始值都为1
+3. 如果上一列n+1位置不存在则值为0
+```
+
+```js
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function(numRows) {
+    if (numRows === 0) return [];
+    var triangle = [[1]]; // 初始化整个三角形第一列
+    for (var i = 1; i < numRows; i++) {
+        var prevRow = triangle[i - 1]; // 取出前一列进行遍历
+        var currentRow = [1]; // 初始化现在这一列
+        for (var j = 0; j < i; j++) {
+            var pre = prevRow[j];
+            var cur =  prevRow[j + 1] ?  prevRow[j + 1] : 0;
+            currentRow.push(pre+cur); 
+        }
+        triangle.push(currentRow);
+    }
+    return triangle;
+};
+```
+## 拓展
+### 描述
+
+```
+給一個指標k，回傳第k階的Pascal's三角形。
+
+範例：
+k=3，回傳[1,3,3,1]。
+```
+
+### 解法
+
+```js
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+var getRow = function(numRows) {
+    var triangle = [[1]]; // 初始化整个三角形第一列
+    if (numRows === 0) return triangle[numRows];
+    for (var i = 1; i < numRows + 1; i++) {
+        var prevRow = triangle[i - 1]; // 取出前一列进行遍历
+        var currentRow = [1]; // 初始化现在这一列
+        for (var j = 0; j < i; j++) {
+            var pre = prevRow[j];
+            var cur =  prevRow[j + 1] ?  prevRow[j + 1] : 0;
+            currentRow.push(pre+cur); 
+        }
+        triangle.push(currentRow);
+    }
+    return triangle[numRows];
 };
 ```
 ---

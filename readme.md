@@ -6,6 +6,6 @@
 + [codeWars2(共15道)](./codeWars2.md)
 + [codeWars3(预计15道)](./codeWars3.md)
 
-## LeetCode
+## 牛客网
 
 + [牛客网练习1](./nkwang/nk1.md)
