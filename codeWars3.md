@@ -286,3 +286,177 @@ var getRow = function(numRows) {
 };
 ```
 ---
+
+## 题目35：Two Sum
+### 描述
+
+```
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+```
+
+### 解法
+```
+这道题非常简单，最开始的时候我的第二个循环还是从第一个数字开始计算的，但是看了别人的讨论之后发现因为之前加过了，所以第二个循环可以不需要
+再从第一个开始
+```
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    for (var i = 0; i < nums.length; i++) {
+        for (var j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] === target) {
+                return [i, j];
+            }
+        }
+    }
+    return [];
+};
+```
+---
+
+## 题目36：Maximum Depth of Binary Tree
+### 描述
+
+```
+Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+```
+
+### 解法
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+ 使用递归的方法进行查找，比较左右子节点的大小，传回较大的那一个节点
+```
+
+```js
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+    return find(root); 
+    // 遞迴函式
+    function find(node){
+        // 節點到底
+        if(node === null){
+            return 0;
+        } 
+
+        var deepL = 1;
+        var deepR = 1;
+        // 有左節點，往下一層找
+        if(node.left !== null){
+            deepL += find(node.left)
+        }
+        // 有右節點，往下一層找
+        if(node.right !== null){
+            deepR += find(node.right)
+        }
+
+        // 回傳較大的深度depth，給上一層節點
+        return deepL > deepR ?　deepL: deepR;
+    }
+};
+```
+---
+
+## 题目37：invert Binary Tree
+### 描述
+
+```
+Invert a binary tree.
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+to
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+```
+
+### 解法
+```
+这道题也是使用递归的方法，将每一个节点的子节点的左右都进行转换
+```
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    if (root === null || (root.left === null && root.right === null)) {
+        return root;
+    }
+    var temp = root.left;
+    root.left = invertTree(root.right);
+    root.right = invertTree(temp);
+    return root;
+};
+```
+---
+
+## 题目38：Same Tree
+
+```
+Given two binary trees, write a function to check if they are equal or not.
+
+Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
+```
+
+### 解法
+```
+1. 首先判断这两个节点是否是空节点，是就是相等的
+2. 然后再判断节点的值是否相等
+3. 最后将节点的子节点继续进行比较
+```
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function(p, q) {
+    if (p === null && q === null) return true;
+    if ((p !== null && q === null) || (p === null && q !== null)) return false;
+    if (p.val !== q.val) return false;
+    return isSameTree(p.right,q.right)&&isSameTree(p.left, q.left);
+};
+```
+---
