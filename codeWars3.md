@@ -460,3 +460,57 @@ var isSameTree = function(p, q) {
 };
 ```
 ---
+
+## 题目39：Lowest Common Ancestor of a Binary Search Tree Add to List
+
+```
+Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
+        _______6______
+       /              \
+    ___2__          ___8__
+   /      \        /      \
+   0      _4       7       9
+         /  \
+         3   5
+```
+
+### 解法
+
+```
+根据排序二叉树的特性来看
+1. 若任意节点的左子树不空，则左子树上所有结点的值均小于它的根结点的值；
+2. 若任意节点的右子树不空，则右子树上所有结点的值均大于它的根结点的值；
+3. 任意节点的左、右子树也分别为二叉查找树；
+4. 没有键值相等的节点。
+找到最低公共祖先节点就只需要找到
+1. 等于自身的节点
+2. 该节点的值在给的两个节点的值之间
+```
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function(root, p, q) {
+    while(1){
+        if (root.val <= q.val && root.val >= p.val || root.val >= q.val && root.val <= p.val) {
+            return root;
+        } else if (root.val > Math.max(p.val, q.val)) {
+            root = root.left;
+        } else if (root.val < Math.min(p.val, q.val)) {
+            root = root.right;
+        }
+    }
+};
+```
+---
